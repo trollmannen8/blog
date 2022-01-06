@@ -1,6 +1,6 @@
 # Blog
 
-## PHP + MySQL
+## PHP + Bootstrap + MySQL
 
 Az adatbázis mellékelve a database mappában.
 
