@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(241, 241, 241);
+}
+
+.spaced {
+    margin-top: 100px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 150px;
+    right: 0;
+    float: right;
+    width: 10%;
+    height: 100vh;
+}
+
+.userimage {
+    height: 32px;
+    width: 32px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.error {
+    color: red;
+}
+
+.post {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.info {
+    font-size: 0.8em;
+}
+
+.text-justify {
+    text-align: justify;
+}
