@@ -1,8 +1,5 @@
 <?php
 
-require_once './models/postmodel.php';
-require_once 'models/usermodel.php';
-
 $authors = getAllUsers();
 $categories = getCategory();
 
