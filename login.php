@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 include 'includes/header.php';
@@ -27,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     if ($success) {
         header('Location: index.php');
-        exit;
+        exit();
     } else {
         $validationError = 'Helytelen felhasználónév vagy jelszó.';
     }

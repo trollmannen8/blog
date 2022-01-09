@@ -27,14 +27,13 @@ $years = getYears($dates);
 
         <form method="POST">
             <div class="mb-3">
-                <label for="search" class="form-label">Keresendő kifejezés:</label>
                 <input type="text" class="form-control" id="search" name="search" aria-describedby="kereses">
                 <div id="kereses" class="form-text">Keresés a bejegyzések címében és szövegében.</div>
             </div>
             <button type="submit" class="btn btn-primary">Keres</button>
         </form>
 
-        <h5 class="mb-3 mt-3">Szűrés</h5>
+        <h5 class="mb-3 mt-5">Szűrés</h5>
 
         <h6 class="mt-3">Szerzők:</h6>
     

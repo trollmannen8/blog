@@ -2,22 +2,15 @@
 
 session_start();
 
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
+
 if (isset($_SESSION['loggedin'])) {
     if ($_SESSION['loggedin'] === true) {
         $username = $_SESSION['username'];
         $image = $_SESSION['image'];
     }
 }
-
-
-include 'includes/header.php';
-include 'includes/navbar.php';
-include 'includes/sidebar.php';
-
-require_once './models/postmodel.php';
-
-$postsPerPage = 5;
-$message = '';
 
 if(!isset($_GET['page'])) {
     $_SESSION['page'] = 1;
@@ -31,9 +24,19 @@ if(isset($_GET['filter'])) {
 
 if(isset($_GET['linkid'])) {
     $_SESSION['post_id'] = $_GET['linkid'];
-    unset($_GET['linkid']);
     header('Location: singlepost.php');
+    exit();
 }
+
+
+include 'includes/header.php';
+include 'includes/navbar.php';
+include 'includes/sidebar.php';
+
+require_once './models/postmodel.php';
+
+$postsPerPage = 5;
+$message = '';
 
 ?>
 

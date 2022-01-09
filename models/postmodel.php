@@ -178,7 +178,8 @@ function getPostDate() {
     if(!$conn) {
         return false;
     }
-    $sql = "SELECT post_date FROM posts";
+    $sql = "SELECT post_date FROM posts
+            ORDER BY post_date DESC;";
     $result = dbSelect($conn, $sql);
     if(!$result) {
         return false;
