@@ -9,9 +9,6 @@ if (isset($_SESSION['loggedin'])) {
     }
 }
 
-error_reporting(E_ALL);
-ini_set('display_errors', 'on');
-
 include 'includes/header.php';
 include 'includes/navbar.php';
 
