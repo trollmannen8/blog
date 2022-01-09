@@ -30,7 +30,6 @@ $displayText = str_replace('&#13;&#10;', '<br>', $post[0]['post_text']);
     <span class="info">Közzététel: <?php print($post[0]['post_date']);?></span><br>
     <span class="info">Kategória: <?php print($post[0]['category_name']);?></span><br>
     <p class="mt-5"><?php print($displayText);?></p>
-    <a href="index.php?page=<?php print($_SESSION['page']);?>" class="btn btn-primary mt-5">Vissza a főoldalra</a>
     
 </div>
 
