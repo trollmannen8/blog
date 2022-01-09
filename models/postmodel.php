@@ -95,6 +95,22 @@ function numberOfFilteredPosts($filter) {
     return mysqli_num_rows($result);
 }
 
+function numberOfSearchedPosts($search) {
+    $conn = connection();
+    if(!$conn) {
+        return false;
+    }
+    $sql = "SELECT post_title, post_text
+            FROM posts
+            WHERE post_title LIKE '%" . $search . "%'
+            OR post_text LIKE '%" . $search . "%'";
+    $result = dbSelect($conn, $sql);
+    if(!$result) {
+        return false;
+    }
+    return mysqli_num_rows($result);
+}
+
 function getFilteredPosts($filter, $pagePosts, $postsPerPage) {
     $conn = connection();
     if(!$conn) {
@@ -107,6 +123,30 @@ function getFilteredPosts($filter, $pagePosts, $postsPerPage) {
             JOIN category ON posts.category_id = category.id
             WHERE category.category_name = '" . $filter . "'
             OR authors.author_name = '" . $filter . "'
+            OR posts.post_date LIKE '%" . $filter . "%'
+            ORDER BY posts.post_date DESC
+            LIMIT $pagePosts, $postsPerPage;";
+    $result = dbSelect($conn, $sql);
+    if(!$result) {
+        return false;
+    }
+    $detail = getData($result);
+    close($conn);
+    return $detail;
+}
+
+function getSearchedPosts($search, $pagePosts, $postsPerPage) {
+    $conn = connection();
+    if(!$conn) {
+        return false;
+    }
+    $sql = "SELECT posts.id, posts.post_title, posts.post_date,
+            posts.post_text, posts.author_id, authors.author_name, category.category_name
+            FROM posts
+            JOIN authors ON posts.author_id = authors.id
+            JOIN category ON posts.category_id = category.id
+            WHERE posts.post_title LIKE '%" . $search . "%'
+            OR posts.post_text LIKE '%" . $search . "%'
             ORDER BY posts.post_date DESC
             LIMIT $pagePosts, $postsPerPage;";
     $result = dbSelect($conn, $sql);
@@ -124,6 +164,21 @@ function getCategory() {
         return false;
     }
     $sql = "SELECT * FROM category";
+    $result = dbSelect($conn, $sql);
+    if(!$result) {
+        return false;
+    }
+    $detail = getData($result);
+    close($conn);
+    return $detail;
+}
+
+function getPostDate() {
+    $conn = connection();
+    if(!$conn) {
+        return false;
+    }
+    $sql = "SELECT post_date FROM posts";
     $result = dbSelect($conn, $sql);
     if(!$result) {
         return false;

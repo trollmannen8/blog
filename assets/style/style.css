@@ -19,6 +19,7 @@ body {
     float: right;
     width: 10%;
     height: 100vh;
+    margin-right: 5px;
 }
 
 .userimage {

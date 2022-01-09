@@ -17,6 +17,7 @@ include 'includes/sidebar.php';
 require_once './models/postmodel.php';
 
 $postsPerPage = 5;
+$message = '';
 
 if(!isset($_GET['page'])) {
     $_SESSION['page'] = 1;
@@ -41,6 +42,7 @@ if(isset($_GET['linkid'])) {
 
     <h1 class="text-center p-5">Blog</h1>
 
+    
     <?php
 
     if(isset($_SESSION['filter']) && $_SESSION['filter'] !== 'nofilter') {
@@ -51,6 +53,7 @@ if(isset($_GET['linkid'])) {
         if(!$posts = getFilteredPosts($filter, $pagePosts, $postsPerPage)) {
             print('<p class="text-center">Nincs találat.</p>');
         }
+        $message = 'Találatok megjelenítve a következő szűrés alapján: ' . $filter;
     } else {
         $pagePosts = ($_SESSION['page'] - 1) * $postsPerPage;
         $numberOfPosts = numberOfPosts();
@@ -58,7 +61,24 @@ if(isset($_GET['linkid'])) {
         $posts = getPostsPerPage($pagePosts, $postsPerPage);
     }
 
+    if(isset($_POST['search'])) {
+        unset($_SESSION['filter']);
+        $search = filter_var($_POST['search'], FILTER_SANITIZE_SPECIAL_CHARS);
+        $pagePosts = ($_SESSION['page'] - 1) * $postsPerPage;
+        $numberOfPosts = numberOfSearchedPosts($search);
+        $numberOfPages = ceil($numberOfPosts / $postsPerPage);
+        if(!$posts = getSearchedPosts($search, $pagePosts, $postsPerPage)) {
+            print('<p class="text-center">Nincs találat.</p>');
+        }
+        $message = 'Találatok megjelenítve a következő keresésre: ' . $search;
+    }
 
+    ?>
+
+    <p class="text-center pb-3"><?php print($message);?></p>
+
+    <?php
+    
     foreach ($posts as $post) {
     ?>
     <div class="card col col-lg-6 m-auto shadow p-3 mb-5 bg-white rounded">
