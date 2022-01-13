@@ -10,7 +10,6 @@ include 'includes/header.php';
 include 'includes/navbar.php';
 
 require 'models/postmodel.php';
-
 require 'models/usermodel.php';
 
 $title = '';
