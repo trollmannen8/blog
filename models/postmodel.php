@@ -87,7 +87,8 @@ function numberOfFilteredPosts($filter) {
             JOIN authors ON posts.author_id = authors.id
             JOIN category ON posts.category_id = category.id
             WHERE category.category_name = '" . $filter . "'
-            OR authors.author_name = '" . $filter . "'";
+            OR authors.author_name = '" . $filter . "'
+            OR posts.post_date LIKE '%" . $filter . "%'";
     $result = dbSelect($conn, $sql);
     if(!$result) {
         return false;
