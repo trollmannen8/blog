@@ -23,3 +23,8 @@ Minden felhasználó jelszava Aa1234567!
 ### A blog admin számára elérhető része
 
 Az admin felület az adminindex.php megnyitásával érhető el. Az admin felhasználóknak lehetőségük van nem használt kategóriákat törölni, és új kategóriákat létrehozni. Törölhetők az inaktív felhasználók (akiknek nincs egy bejegyzésük sem).
+
+Bejelentkezés admin felületre:
+
++ felhasználónév: adminuser
++ jelszó: adminpass
