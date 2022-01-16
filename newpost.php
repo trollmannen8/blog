@@ -23,7 +23,6 @@ $categories = getCategory();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
     $categoryId = (int)$_POST['category'];
-    var_dump($categoryId);
     $date = date('Y-m-d H:i');
     $text = filter_var($_POST['text'], FILTER_SANITIZE_SPECIAL_CHARS);
     $textToStore = nl2br($text);

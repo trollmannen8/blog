@@ -2,46 +2,44 @@
 
 session_start();
 
-include 'includes/header.php';
+include './includes/header.php';
 
-require 'models/usermodel.php';
+require './models/adminmodel.php';
 
-$username = '';
+$adminname = '';
 $password = '';
 $validationError = '';
 $success = false;
-$image = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = filter_var($_POST['username'], FILTER_SANITIZE_SPECIAL_CHARS);
+    $adminname = filter_var($_POST['adminname'], FILTER_SANITIZE_SPECIAL_CHARS);
     $password = hash('sha512', $_POST['password']);
-    $data = getAllUsers();
+    $data = getAllAdminUsers();
     for ($i = 0; $i < count($data); $i++) {
-        if ($data[$i]['author_name'] === $username && $data[$i]['author_password'] === $password) {
+        if ($data[$i]['admin_name'] === $adminname && $data[$i]['admin_password'] === $password && $data[$i]['active'] == 1) {
             $success = true;
-            $_SESSION['username'] = $username;
-            $_SESSION['authorid'] = $data[$i]['id'];
-            $_SESSION['image'] = $data[$i]['author_image'];
-            $_SESSION['loggedin'] = true;
+            $_SESSION['adminname'] = $adminname;
+            $_SESSION['adminloggedin'] = true;
         }
     }
     if ($success) {
-        header('Location: index.php');
+        header('Location: adminindex.php');
         exit();
     } else {
         $validationError = 'Helytelen felhasználónév vagy jelszó.';
     }
 }
+
 ?>
 
 <div class="container col-lg-3 mt-5 bg-white shadow p-5 mb-5 bg-white rounded">
 
-    <h2>Bejelentkezés</h2>
+    <h2>Bejelentkezés admin felületre</h2>
 
     <form class="mb-3" action="" method="POST">
         <div class="mb-3">
-            <label for="username" class="form-label">Felhasználónév:</label>
-            <input type="text" id="username" name="username" class="form-control" value="">
+            <label for="adminname" class="form-label">Felhasználónév:</label>
+            <input type="text" id="adminname" name="adminname" class="form-control" value="">
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Jelszó:</label>
@@ -53,12 +51,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="submit" class="btn btn-primary" value="Bejelentkezés">
     </form>
 
-    <span><a href="register.php" class="link-primary">Nincs még fiókom, regisztrálok</a></span>
-
 </div>
 
 <?php
 
-include 'includes/footer.php';
+include './includes/footer.php';
 
 ?>

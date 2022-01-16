@@ -53,13 +53,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $source = $_FILES['avatar']['tmp_name'];
             $destination = './assets/img/' . $username . '.jpg';
             copy($source, $destination);
-        } else {
-            $destination = './assets/img/default.jpg';
         }
         $password = hash('sha512', $userpass);
         newUser($username, $password, $destination);
         unset($_FILES);
         header('Location: login.php');
+        exit();
     } else {
         foreach($errors as $error) {
             $validationError .= $error . '<br>';
@@ -68,7 +67,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
-
 
 <div class="container spaced col-lg-4 mt-5 bg-white shadow p-5 mb-5 bg-white rounded">
     <h2 class="text-center">Regisztáció</h2>
