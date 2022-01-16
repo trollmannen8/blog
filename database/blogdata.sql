@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 13, 2022 at 07:35 PM
+-- Generation Time: Jan 16, 2022 at 12:58 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `blogdata`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adminusers`
+--
+
+CREATE TABLE `adminusers` (
+  `id` int(11) NOT NULL,
+  `admin_name` varchar(255) NOT NULL,
+  `admin_password` varchar(255) NOT NULL,
+  `active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `adminusers`
+--
+
+INSERT INTO `adminusers` (`id`, `admin_name`, `admin_password`, `active`) VALUES
+(1, 'adminuser', '836bc6397d06de5f635683cff01822564683b57c5298c38bd389628685d9ce9d74cba952fc80ac305a6dd1d122bb041dfa93377880d478f27b99da3fafc05bf6', 1),
+(2, 'admin', 'c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', 0);
 
 -- --------------------------------------------------------
 
@@ -42,7 +63,8 @@ INSERT INTO `authors` (`id`, `author_name`, `author_password`, `author_image`) V
 (1, 'giraffe', 'b690b60b6260e68ef5855df31dce314edacd04d1036b5c67e179be434c9d7b3194c72109323f5bd828fdef44b45c9acee48ba3918096fe041abe951909c4ea36', './assets/img/giraffe.jpg'),
 (2, 'elephant', 'b690b60b6260e68ef5855df31dce314edacd04d1036b5c67e179be434c9d7b3194c72109323f5bd828fdef44b45c9acee48ba3918096fe041abe951909c4ea36', './assets/img/elephant.jpg'),
 (3, 'brownbear', 'b690b60b6260e68ef5855df31dce314edacd04d1036b5c67e179be434c9d7b3194c72109323f5bd828fdef44b45c9acee48ba3918096fe041abe951909c4ea36', './assets/img/brownbear.jpg'),
-(4, 'penguin', 'b690b60b6260e68ef5855df31dce314edacd04d1036b5c67e179be434c9d7b3194c72109323f5bd828fdef44b45c9acee48ba3918096fe041abe951909c4ea36', './assets/img/penguin.jpg');
+(4, 'penguin', 'b690b60b6260e68ef5855df31dce314edacd04d1036b5c67e179be434c9d7b3194c72109323f5bd828fdef44b45c9acee48ba3918096fe041abe951909c4ea36', './assets/img/penguin.jpg'),
+(12, 'testuser', 'b690b60b6260e68ef5855df31dce314edacd04d1036b5c67e179be434c9d7b3194c72109323f5bd828fdef44b45c9acee48ba3918096fe041abe951909c4ea36', './assets/img/testuser.jpg');
 
 -- --------------------------------------------------------
 
@@ -65,7 +87,9 @@ INSERT INTO `category` (`id`, `category_name`) VALUES
 (3, 'Egyebek'),
 (4, 'HTML'),
 (5, 'CSS'),
-(6, 'Linux');
+(6, 'Linux'),
+(7, 'Szépségápolás'),
+(9, 'Sütemények');
 
 -- --------------------------------------------------------
 
@@ -106,6 +130,12 @@ INSERT INTO `posts` (`id`, `post_title`, `post_date`, `post_text`, `author_id`, 
 --
 
 --
+-- Indexes for table `adminusers`
+--
+ALTER TABLE `adminusers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `authors`
 --
 ALTER TABLE `authors`
@@ -130,16 +160,22 @@ ALTER TABLE `posts`
 --
 
 --
+-- AUTO_INCREMENT for table `adminusers`
+--
+ALTER TABLE `adminusers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `posts`
