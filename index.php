@@ -51,9 +51,10 @@ $message = '';
         $numberOfPosts = numberOfFilteredPosts($filter);
         $numberOfPages = ceil($numberOfPosts / $postsPerPage);
         if(!$posts = getFilteredPosts($filter, $pagePosts, $postsPerPage)) {
-            print('<p class="text-center">Nincs találat.</p>');
+            $message = 'Nincsenek találatok a következő szűrésre: ' . $filter;
+        } else {
+            $message = 'Találatok megjelenítve a következő szűrés alapján: ' . $filter;
         }
-        $message = 'Találatok megjelenítve a következő szűrés alapján: ' . $filter;
     } else {
         $pagePosts = ($_SESSION['page'] - 1) * $postsPerPage;
         $numberOfPosts = numberOfPosts();
