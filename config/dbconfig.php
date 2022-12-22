@@ -1,6 +1,6 @@
 <?php
 
 $username = 'root';
-$password = '';
+$password = 'Giraffe1337';
 $url = 'localhost';
 $dbname = 'blogdata';
